@@ -78,7 +78,7 @@ def hash_module(
 
     def process(code_obj: CodeType) -> None:
         # Recursively hash the constants that are also code objects
-        for const in code_obj.co_consts:
+        for const in code_obj.co_constants:
             if isinstance(const, types.CodeType):
                 process(const)
             else:
@@ -631,7 +631,7 @@ class BlockHasher:
 
                 ref_list = ", ".join(
                     [
-                        f"{ref}: {get_type(ref)} ({str(e)})"
+                        f"{ref}: {get_type(ref)} ({e!s})"
                         for ref, e in zip(failed, exceptions)
                     ]
                 )
